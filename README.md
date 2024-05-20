@@ -1,11 +1,10 @@
 
-# Compositional Cosine Graph Embeddings (Co-CGE)
-This is the official PyTorch code of the T-PAMI 2022 paper [Learning Graph Embeddings for Open World Compositional Zero-shot Learning](https://arxiv.org/pdf/2105.01017.pdf).
+# Predict Umatching Compositions for Compositional Zero-Shot Learning
 
-**Note:** Most of the code is borrowed from https://github.com/ExplainableML/czsl.
+**Note:** Most of the code is borrowed from [https://github.com/ExplainableML/czsl](https://github.com/ExplainableML/co-cge).
 
 <p align="center">
-  <img src="utils/img.png" />
+  <img src="utils/dependencymodelingflow.png" />
 </p>
 
 ## Setup 
@@ -20,7 +19,7 @@ This is the official PyTorch code of the T-PAMI 2022 paper [Learning Graph Embed
 
 3. Go to the cloned repo and open a terminal. Download the datasets and embeddings, specifying the desired path (e.g. `DATA_ROOT` in the example):
 ```
-    bash ./utils/download_data.sh DATA_ROOT
+    bash ./utils/download_data.sh ROOT_FOLDER
     mkdir logs
 ```
 
@@ -28,11 +27,11 @@ This is the official PyTorch code of the T-PAMI 2022 paper [Learning Graph Embed
 ## Training
 To train Co-CGE for OW-CZSL, the command is simply:
 ```
-    python train.py --config configs/co-cge/CONFIG_FILE --fast_eval 
+    python train.py --config configs/ld/MODEL_NAME/CONFIG_FILE --fast_eval 
 ```
-where `CONFIG_FILE` is the path to the configuration file of the model. We suggest to use the `fast_eval` flag to speed up the test phase.
+where `MODEL_NAME` is one of cocge, kgsp, compcos and `CONFIG_FILE` is the path to the configuration file of the model. We suggest to use the `fast_eval` flag to speed up the test phase.
 
-Note that the folder `configs` contains configuration files for Co-CGE and all other methods, i.e. CGE in `configs/cge`, CompCos in `configs/compcos`, and the other methods in `configs/baselines`.  
+Note that the folder `configs` contains configuration files for Absence Modeling and all other methods, i.e. Absence modeling in `configs/ld`, CompCos in `configs/compcos`, and the other methods in `configs/baselines`.  
 
 To train for OW-CZSL a non-open world method, just add `--open_world` after the command. E.g. for running SymNet in the open world scenario on Mit-States, the command is:
 ```
@@ -64,11 +63,5 @@ To test a model trained for OW-CZSL in the closed setting, run:
 ## References
 If you use this code, please cite
 ```
-@inproceedings{mancini2022learning,
-  title={Learning Graph Embeddings for Open World Compositional Zero-shot Learning},
-  author={Mancini, M and Naeem, MF and Xian, Y and Akata, Zeynep},
-  booktitle={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  year={2022},
-  organization={IEEE}
-}
+
 ```
